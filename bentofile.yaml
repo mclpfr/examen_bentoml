@@ -1,0 +1,29 @@
+service: "src.service:svc"
+
+description: "Service de prédiction des chances d'admission à l'université"
+
+labels:
+  owner: "Lopes Marco"
+  project: "Admissions Prediction"
+
+include:
+  - "src/service.py"
+  - "README.md"
+
+python:
+  packages:
+    - numpy
+    - pandas
+    - scikit-learn
+    - bentoml
+    - pydantic
+    - requests
+    - pyjwt
+
+docker:
+  dockerfile_template: "./Dockerfile.template"
+  base_image: python:3.8-slim
+
+models:
+  - "admission_model:latest"
+  - "admission_scaler:latest"

@@ -1,28 +1,107 @@
-# Examen BentoML
+# Service de Prédiction d'Admission Universitaire
 
-Ce repertoire contient l'architecture basique afin de rendre l'évaluation pour l'examen BentoML.
+## Prérequis
 
-Vous êtes libres d'ajouter d'autres dossiers ou fichiers si vous jugez utile de le faire.
+- Python 3.8+
+- Docker
+- pip
+- virtualenv 
 
-Voici comment est construit le dossier de rendu de l'examen:
+## Structure du Projet
 
-```bash       
-├── examen_bentoml          
-│   ├── data       
-│   │   ├── processed      
-│   │   └── raw           
-│   ├── models      
-│   ├── src       
-│   └── README.md
+```
+examen_bentoml/
+├── data/
+│   ├── processed/    # Données prétraitées
+│   └── raw/          # Données brutes
+├── models/           # Modèles et visualisations
+├── src/              # Code source
+│   ├── prepare_data.py
+│   ├── train_model.py
+│   └── service.py
+├── tests/            # Tests unitaires
+│   └── test_service.py
+├── bentofile.yaml    # Configuration BentoML
+└── README.md         # Documentation
 ```
 
-Afin de pouvoir commencer le projet vous devez suivre les étapes suivantes:
+## Installation et Configuration
 
-- Forker le projet sur votre compte github
+### 2. Configuration de l'Environnement Virtuel
 
-- Cloner le projet sur votre machine
+```bash
+# Création d'un environnement virtuel
+python -m venv venv
+source venv/bin/activate
 
-- Récuperer le jeu de données à partir du lien suivant: [Lien de téléchargement]( https://datascientest.s3-eu-west-1.amazonaws.com/examen_bentoml/admissions.csv)
+# Installation des dépendances
+pip install -r requirements.txt
+```
 
+## Préparation des Données et Entraînement du Modèle
 
-Bon travail!
+```bash
+# Préparation des données
+python src/prepare_data.py
+
+# Entraînement du modèle
+python src/train_model.py
+```
+
+## Lancement du Service
+
+```bash
+# Lancement du service BentoML
+bentoml serve src.service:svc --reload
+```
+
+### Création et Lancement du Conteneur Docker
+
+```bash
+# Construction du Bento
+bentoml build
+
+# Conteneurisation
+bentoml containerize admission_service:latest
+
+# Lancement du conteneur
+docker run -p 3000:3000 admission_service:latest
+```
+
+## Utilisation de l'API
+
+### Authentification
+
+Obtenir un token JWT :
+
+```bash
+token=$(curl -s -X POST http://127.0.0.1:3000/login \
+     -H "Content-Type: application/json" \
+     -d '{"username": "admin", "password": "password"}' | jq -r '.access_token')
+```
+
+### Prédiction
+
+```bash
+curl -X POST http://localhost:3000/predict \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $token" \
+  -d '{
+    "gre_score": 320,
+    "toefl_score": 110,
+    "university_rating": 4,
+    "sop": 4.5,
+    "lor": 4.0,
+    "cgpa": 9.0,
+    "research": 1
+  }'
+```
+
+## Tests
+
+Exécution des tests unitaires :
+
+```bash
+# Lancement des tests
+pytest tests/test_service.py -v
+```
