@@ -98,6 +98,11 @@ curl -X POST http://localhost:3000/predict \
     "research": 1
   }'
 ```
+Résultat attendu :
+
+```bash
+ {"chance_of_admit":0.811278563602218}(venv)
+```
 
 ## Tests
 

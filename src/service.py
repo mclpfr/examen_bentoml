@@ -31,10 +31,10 @@ class TokenResponse(BaseModel):
     token_type: str
 
 # Loading BentoML Models
-admission_model = bentoml.sklearn.load_model("admission_model:latest")
-scaler = bentoml.sklearn.load_model("admission_scaler:latest")
+admission_model = bentoml.sklearn.load_model("LOPES_admission_model:latest")
+scaler = bentoml.sklearn.load_model("LOPES_admission_scaler:latest")
 
-svc = bentoml.Service("admission_service")
+svc = bentoml.Service("LOPES_admission_service")
 
 def create_access_token(username: str):
     # Calculate expiration time (30 minutes from now)

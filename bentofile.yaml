@@ -25,5 +25,5 @@ docker:
   base_image: python:3.8-slim
 
 models:
-  - "admission_model:latest"
-  - "admission_scaler:latest"
+  - "LOPES_admission_model:latest"
+  - "LOPES_admission_scaler:latest"
