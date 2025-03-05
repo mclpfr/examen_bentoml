@@ -4,12 +4,23 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler  
 import os  
 import bentoml
+import requests
 
 os.makedirs('data/raw', exist_ok=True)  
 os.makedirs('data/processed', exist_ok=True) 
 
 dataset_url = "https://assets-datascientest.s3.eu-west-1.amazonaws.com/MLOPS/bentoml/admission.csv"
 raw_data_path = "data/raw/admission.csv"
+
+# Download the file if it does not already exist
+if not os.path.exists(raw_data_path):
+    response = requests.get(dataset_url)
+    with open(raw_data_path, 'wb') as file:
+        file.write(response.content)
+    print(f"File downloaded and saved at {raw_data_path}")
+else:
+    print(f"The file already exists at {raw_data_path}")
+
 data = pd.read_csv(raw_data_path)
 
 print("\nMissing values per column:")

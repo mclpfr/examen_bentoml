@@ -2,3 +2,8 @@
 .DS_Store?
 /venv
 /clean_data.csv
+data/processed/
+data/raw/
+models/
+src/__pycache__/
+tests/__pycache__/
