@@ -50,12 +50,14 @@ python src/train_model.py
 
 ## Lancement du Service
 
+### Version BentoML
+
 ```bash
 # Lancement du service BentoML
 bentoml serve src.service:svc --reload
 ```
 
-### Création et Lancement du Conteneur Docker
+### Version Docker
 
 ```bash
 # Construction du Bento
