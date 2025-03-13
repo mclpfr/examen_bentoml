@@ -43,4 +43,4 @@ plt.close()
 # Saving the model with BentoML
 bentoml.sklearn.save_model("lopes_admission_model", model, signatures={"predict": {"batchable": True,}},)
 
-print("\nModel saved with BentoML under the name 'admission_model'")
+print("\nModel saved with BentoML under the name 'lopes_admission_model'")
