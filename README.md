@@ -46,10 +46,10 @@ bentoml serve src.service:svc --reload
 bentoml build
 
 # Conteneurisation
-bentoml containerize lopes_admission_service:latest
+bentoml containerize lopes_admission_service:latest --image-tag admission_service:latest
 
 # Lancement du conteneur
-docker run -p 3000:3000 admission_service:latest
+docker run -p 3000:3000 lopes_admission_service:latest
 ```
 
 ## Utilisation de l'API
