@@ -2,7 +2,7 @@
 
 ## Prérequis
 
-- Python 3.8+
+- Python 3.10
 - Docker
 - pip
 - virtualenv 
@@ -31,7 +31,7 @@ examen_bentoml/
 
 ```bash
 # Création d'un environnement virtuel
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 
 # Installation des dépendances
