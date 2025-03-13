@@ -7,27 +7,9 @@
 - pip
 - virtualenv 
 
-## Structure du Projet
-
-```
-examen_bentoml/
-├── data/
-│   ├── processed/    # Données prétraitées
-│   └── raw/          # Données brutes
-├── models/           # Modèles et visualisations
-├── src/              # Code source
-│   ├── prepare_data.py
-│   ├── train_model.py
-│   └── service.py
-├── tests/            # Tests unitaires
-│   └── test_service.py
-├── bentofile.yaml    # Configuration BentoML
-└── README.md         # Documentation
-```
-
 ## Installation et Configuration
 
-### 2. Configuration de l'Environnement Virtuel
+### Configuration de l'Environnement Virtuel
 
 ```bash
 # Création d'un environnement virtuel
@@ -64,7 +46,7 @@ bentoml serve src.service:svc --reload
 bentoml build
 
 # Conteneurisation
-bentoml containerize admission_service:latest
+bentoml containerize lopes_admission_service:latest
 
 # Lancement du conteneur
 docker run -p 3000:3000 admission_service:latest
@@ -112,3 +94,21 @@ Exécution des tests unitaires :
 # Lancement des tests
 pytest tests/test_service.py -v
 ```
+## Structure du Projet
+
+```
+examen_bentoml/
+├── data/
+│   ├── processed/    # Données prétraitées
+│   └── raw/          # Données brutes
+├── models/           # Modèles et visualisations
+├── src/              # Code source
+│   ├── prepare_data.py
+│   ├── train_model.py
+│   └── service.py
+├── tests/            # Tests unitaires
+│   └── test_service.py
+├── bentofile.yaml    # Configuration BentoML
+└── README.md         # Documentation
+```
+

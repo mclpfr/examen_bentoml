@@ -22,8 +22,8 @@ python:
 
 docker:
   dockerfile_template: "./Dockerfile.template"
-  base_image: python:3.8-slim
+  base_image: python:3.10-slim
 
 models:
-  - "LOPES_admission_model:latest"
-  - "LOPES_admission_scaler:latest"
+  - "lopes_admission_model:latest"
+  - "lopes_admission_scaler:latest"

@@ -43,7 +43,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # Save scaler with bentoML
-bentoml.sklearn.save_model("LOPES_admission_scaler", scaler)
+bentoml.sklearn.save_model("lopes_admission_scaler", scaler)
 print("Scaler saved with bentoML")
 
 # Saving the data in CSV format

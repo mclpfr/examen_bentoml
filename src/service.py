@@ -31,8 +31,8 @@ class TokenResponse(BaseModel):
     token_type: str
 
 # Loading BentoML Models
-admission_model = bentoml.sklearn.load_model("LOPES_admission_model:latest")
-scaler = bentoml.sklearn.load_model("LOPES_admission_scaler:latest")
+admission_model = bentoml.sklearn.load_model("lopes_admission_model:latest")
+scaler = bentoml.sklearn.load_model("lopes_admission_scaler:latest")
 
 svc = bentoml.Service("LOPES_admission_service")
 

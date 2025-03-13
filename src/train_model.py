@@ -41,6 +41,6 @@ plt.savefig('models/prediction_vs_actual.png')
 plt.close()
 
 # Saving the model with BentoML
-bentoml.sklearn.save_model("LOPES_admission_model", model, signatures={"predict": {"batchable": True,}},)
+bentoml.sklearn.save_model("lopes_admission_model", model, signatures={"predict": {"batchable": True,}},)
 
 print("\nModel saved with BentoML under the name 'admission_model'")
